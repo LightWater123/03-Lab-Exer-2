@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace _03LabExer2
 {
 
-    // step 4 - creating the class
+    
     public class ProductClass
     {
         private int _Quantity;
