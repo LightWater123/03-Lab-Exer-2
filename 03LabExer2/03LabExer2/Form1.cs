@@ -15,7 +15,7 @@ namespace _03LabExer2
 
     public partial class frmAddProduct : Form
     {
-        // step 5 - adding variabless
+        
         private string _ProductName, _Category, _MfgDate, _ExpDate, _Description;
         private int _Quantity;
         private double _SellPrice;
@@ -23,76 +23,38 @@ namespace _03LabExer2
         private BindingSource showProductList;
         public string Product_Name(string name)
         {
-            try
-            {
-                if (!Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
+            
+                if (!Regex.IsMatch(name, @"^[a-zA-Z\s]$"))
                 {
                     throw new StringFormatException("Product Name must contain only letters.");
                 }
                 return name;
-            }
-            catch (StringFormatException ex)
-            {
-                MessageBox.Show(ex.Message, "Invalid Product Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-            finally
-            {
-                txtProductName.Text = "";
-            }
+            
+            
         }
         public int Quantity(string qty)
         {
-            try
-            {
-                if (!Regex.IsMatch(qty, @"^[0-9]+$"))
+            
+                if (!Regex.IsMatch(qty, @"^[0-9]$"))
                 {
                     throw new NumberFormatException("Quantity must be a valid integer.");
                 }
                 return Convert.ToInt32(qty);
-            }
-            catch (NumberFormatException ex)
-            {
-                MessageBox.Show(ex.Message, "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return 0; 
-            }
-            finally
-            {
-                txtQuantity.Text = "";
-            }
+            
         }
 
         public double SellingPrice(string price)
         {
-            try
-            {
-                if (!Regex.IsMatch(price.ToString(), @"^(\d*\.)?\d+$"))
+            
+                if (!Regex.IsMatch(price.ToString(), @"^(\d*\.)?\d$"))
                 {
                     throw new CurrencyFormatException("Selling Price must be a valid currency amount.");
                 }
                 return Convert.ToDouble(price);
-            }
-            catch (CurrencyFormatException ex)
-            {
-                MessageBox.Show(ex.Message, "Invalid Selling Price", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return 0.0;
-            }
-            finally
-            {
-                txtSellPrice.Text = "";
-            }
+            
         }
 
-        public bool ValidateMfg(DateTimePicker dtPickerMfgDate, DateTimePicker dtPickerExpDate)
-        {
-            if (dtPickerExpDate.Value.CompareTo(dtPickerMfgDate.Value) < 0)
-            {
-                MessageBox.Show("The manufacturing date is greater than the expiration date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;  
-            }
-            return true;  
-        }
-        
+                
         public frmAddProduct()
         {
             InitializeComponent();
@@ -101,7 +63,7 @@ namespace _03LabExer2
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            // step 6 - create an array
+            
             string[] ListOfProductCategory = new string[]
             {
                 "Beverages",
@@ -113,7 +75,7 @@ namespace _03LabExer2
                 "Personal Care",
                 "Other"
             };
-            // step 7 - foreach loopto display array items in the comboBox
+            
             foreach (string productList in ListOfProductCategory)
             {
                 cbCategory.Items.Add(productList);
@@ -160,7 +122,7 @@ namespace _03LabExer2
 
         }
 
-        // step 10
+       
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
 
@@ -185,11 +147,10 @@ namespace _03LabExer2
 
             
 
-            // reset comboBox
-            cbCategory.SelectedIndex = -1;
+           
         }
 
-        // step 12 - custom exceptions
+       
         public class StringFormatException : Exception
         {
             public StringFormatException(string message) : base(message) { }
